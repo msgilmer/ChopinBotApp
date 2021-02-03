@@ -349,7 +349,7 @@ if __name__ == '__main__':
                       ' Music', key = music_type)):
             exec(('convert_to_midi(transposed_{0}_music, bpm = bpm, ' + \
                  'output_file = \'/tmp/{0}.mid\')').format(music_type))
-            st.markdown(get_binary_file_downloader_html('./midi_output/' + \
+            st.markdown(get_binary_file_downloader_html('/tmp/' + \
                     music_type + '.mid', 'MIDI'), unsafe_allow_html = True)
 
 
