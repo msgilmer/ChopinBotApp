@@ -1,0 +1,28 @@
+[I 210130 16:51:57 ChopinBotApp:27] Logfile ./logfiles/logzero_2ccf24ec-764d-4316-994d-1333aceb6e69.log created
+[E 210130 16:56:59 ChopinBotApp:60] OSError on model.load_weights: Unable to open file (unable to open file: name = '../models/best_maestro_model_weights_ext20_2_1_1024_0pt4_mnv_2-.h5', errno = 2, error message = 'No such file or directory', flags = 0, o_flags = 0)
+    Traceback (most recent call last):
+      File "/opt/anaconda3/lib/python3.7/site-packages/streamlit/caching.py", line 576, in get_or_create_cached_value
+        hash_funcs=hash_funcs,
+      File "/opt/anaconda3/lib/python3.7/site-packages/streamlit/caching.py", line 336, in _read_from_cache
+        raise e
+      File "/opt/anaconda3/lib/python3.7/site-packages/streamlit/caching.py", line 322, in _read_from_cache
+        mem_cache, key, allow_output_mutation, func_or_code, hash_funcs
+      File "/opt/anaconda3/lib/python3.7/site-packages/streamlit/caching.py", line 252, in _read_from_mem_cache
+        raise CacheKeyNotFoundError("Key not found in mem cache")
+    streamlit.caching.CacheKeyNotFoundError: Key not found in mem cache
+    
+    During handling of the above exception, another exception occurred:
+    
+    Traceback (most recent call last):
+      File "/Users/gilmer/Documents/Springboard_Capstone/web_app/ChopinBotApp.py", line 70, in get_weights
+        model.load_weights(filepath)
+      File "/opt/anaconda3/lib/python3.7/site-packages/tensorflow/python/keras/engine/training.py", line 2204, in load_weights
+        with h5py.File(filepath, 'r') as f:
+      File "/opt/anaconda3/lib/python3.7/site-packages/h5py/_hl/files.py", line 408, in __init__
+        swmr=swmr)
+      File "/opt/anaconda3/lib/python3.7/site-packages/h5py/_hl/files.py", line 173, in make_fid
+        fid = h5f.open(name, flags, fapl=fapl)
+      File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
+      File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
+      File "h5py/h5f.pyx", line 88, in h5py.h5f.open
+    OSError: Unable to open file (unable to open file: name = '../models/best_maestro_model_weights_ext20_2_1_1024_0pt4_mnv_2-.h5', errno = 2, error message = 'No such file or directory', flags = 0, o_flags = 0)

@@ -1,0 +1,113 @@
+[I 210130 16:37:04 ChopinBotApp:27] Logfile ./logfiles/logzero_1ecf774e-0ea4-4bc5-aa7c-ee81cffbb115.log created
+[E 210130 16:37:04 ChopinBotApp:76] ValueError on model.load_weights: Shapes (108, 2048) and (108, 4096) are incompatible
+    Traceback (most recent call last):
+      File "/opt/anaconda3/lib/python3.7/site-packages/streamlit/caching.py", line 576, in get_or_create_cached_value
+        hash_funcs=hash_funcs,
+      File "/opt/anaconda3/lib/python3.7/site-packages/streamlit/caching.py", line 336, in _read_from_cache
+        raise e
+      File "/opt/anaconda3/lib/python3.7/site-packages/streamlit/caching.py", line 322, in _read_from_cache
+        mem_cache, key, allow_output_mutation, func_or_code, hash_funcs
+      File "/opt/anaconda3/lib/python3.7/site-packages/streamlit/caching.py", line 252, in _read_from_mem_cache
+        raise CacheKeyNotFoundError("Key not found in mem cache")
+    streamlit.caching.CacheKeyNotFoundError: Key not found in mem cache
+    
+    During handling of the above exception, another exception occurred:
+    
+    Traceback (most recent call last):
+      File "/Users/gilmer/Documents/Springboard_Capstone/web_app/ChopinBotApp.py", line 68, in get_weights
+        model.load_weights(filepath)
+      File "/opt/anaconda3/lib/python3.7/site-packages/tensorflow/python/keras/engine/training.py", line 2211, in load_weights
+        hdf5_format.load_weights_from_hdf5_group(f, self.layers)
+      File "/opt/anaconda3/lib/python3.7/site-packages/tensorflow/python/keras/saving/hdf5_format.py", line 708, in load_weights_from_hdf5_group
+        K.batch_set_value(weight_value_tuples)
+      File "/opt/anaconda3/lib/python3.7/site-packages/tensorflow/python/util/dispatch.py", line 201, in wrapper
+        return target(*args, **kwargs)
+      File "/opt/anaconda3/lib/python3.7/site-packages/tensorflow/python/keras/backend.py", line 3576, in batch_set_value
+        x.assign(np.asarray(value, dtype=dtype(x)))
+      File "/opt/anaconda3/lib/python3.7/site-packages/tensorflow/python/ops/resource_variable_ops.py", line 858, in assign
+        self._shape.assert_is_compatible_with(value_tensor.shape)
+      File "/opt/anaconda3/lib/python3.7/site-packages/tensorflow/python/framework/tensor_shape.py", line 1134, in assert_is_compatible_with
+        raise ValueError("Shapes %s and %s are incompatible" % (self, other))
+    ValueError: Shapes (108, 2048) and (108, 4096) are incompatible
+[E 210130 16:40:57 ChopinBotApp:72] OSError on model.load_weights: Unable to open file (unable to open file: name = '../models/best_maestro_model_weights_ext20_2_1_1024_0pt4_mnv_2-.h5', errno = 2, error message = 'No such file or directory', flags = 0, o_flags = 0)
+    Traceback (most recent call last):
+      File "/opt/anaconda3/lib/python3.7/site-packages/streamlit/caching.py", line 576, in get_or_create_cached_value
+        hash_funcs=hash_funcs,
+      File "/opt/anaconda3/lib/python3.7/site-packages/streamlit/caching.py", line 336, in _read_from_cache
+        raise e
+      File "/opt/anaconda3/lib/python3.7/site-packages/streamlit/caching.py", line 322, in _read_from_cache
+        mem_cache, key, allow_output_mutation, func_or_code, hash_funcs
+      File "/opt/anaconda3/lib/python3.7/site-packages/streamlit/caching.py", line 252, in _read_from_mem_cache
+        raise CacheKeyNotFoundError("Key not found in mem cache")
+    streamlit.caching.CacheKeyNotFoundError: Key not found in mem cache
+    
+    During handling of the above exception, another exception occurred:
+    
+    Traceback (most recent call last):
+      File "/Users/gilmer/Documents/Springboard_Capstone/web_app/ChopinBotApp.py", line 68, in get_weights
+        model.load_weights(filepath)
+      File "/opt/anaconda3/lib/python3.7/site-packages/tensorflow/python/keras/engine/training.py", line 2204, in load_weights
+        with h5py.File(filepath, 'r') as f:
+      File "/opt/anaconda3/lib/python3.7/site-packages/h5py/_hl/files.py", line 408, in __init__
+        swmr=swmr)
+      File "/opt/anaconda3/lib/python3.7/site-packages/h5py/_hl/files.py", line 173, in make_fid
+        fid = h5f.open(name, flags, fapl=fapl)
+      File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
+      File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
+      File "h5py/h5f.pyx", line 88, in h5py.h5f.open
+    OSError: Unable to open file (unable to open file: name = '../models/best_maestro_model_weights_ext20_2_1_1024_0pt4_mnv_2-.h5', errno = 2, error message = 'No such file or directory', flags = 0, o_flags = 0)
+[E 210130 16:42:13 ChopinBotApp:72] OSError on model.load_weights: Unable to open file (unable to open file: name = '../models/best_maestro_model_weights_ext20_2_1_1024_0pt4_mnv_2-.h5', errno = 2, error message = 'No such file or directory', flags = 0, o_flags = 0)
+    Traceback (most recent call last):
+      File "/opt/anaconda3/lib/python3.7/site-packages/streamlit/caching.py", line 576, in get_or_create_cached_value
+        hash_funcs=hash_funcs,
+      File "/opt/anaconda3/lib/python3.7/site-packages/streamlit/caching.py", line 336, in _read_from_cache
+        raise e
+      File "/opt/anaconda3/lib/python3.7/site-packages/streamlit/caching.py", line 322, in _read_from_cache
+        mem_cache, key, allow_output_mutation, func_or_code, hash_funcs
+      File "/opt/anaconda3/lib/python3.7/site-packages/streamlit/caching.py", line 252, in _read_from_mem_cache
+        raise CacheKeyNotFoundError("Key not found in mem cache")
+    streamlit.caching.CacheKeyNotFoundError: Key not found in mem cache
+    
+    During handling of the above exception, another exception occurred:
+    
+    Traceback (most recent call last):
+      File "/Users/gilmer/Documents/Springboard_Capstone/web_app/ChopinBotApp.py", line 68, in get_weights
+        model.load_weights(filepath)
+      File "/opt/anaconda3/lib/python3.7/site-packages/tensorflow/python/keras/engine/training.py", line 2204, in load_weights
+        with h5py.File(filepath, 'r') as f:
+      File "/opt/anaconda3/lib/python3.7/site-packages/h5py/_hl/files.py", line 408, in __init__
+        swmr=swmr)
+      File "/opt/anaconda3/lib/python3.7/site-packages/h5py/_hl/files.py", line 173, in make_fid
+        fid = h5f.open(name, flags, fapl=fapl)
+      File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
+      File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
+      File "h5py/h5f.pyx", line 88, in h5py.h5f.open
+    OSError: Unable to open file (unable to open file: name = '../models/best_maestro_model_weights_ext20_2_1_1024_0pt4_mnv_2-.h5', errno = 2, error message = 'No such file or directory', flags = 0, o_flags = 0)
+[E 210130 16:46:30 ChopinBotApp:73] OSError on model.load_weights: Unable to open file (unable to open file: name = '../models/best_maestro_model_weights_ext20_2_1_1024_0pt4_mnv_2-.h5', errno = 2, error message = 'No such file or directory', flags = 0, o_flags = 0)
+    Traceback (most recent call last):
+      File "/opt/anaconda3/lib/python3.7/site-packages/streamlit/caching.py", line 576, in get_or_create_cached_value
+        hash_funcs=hash_funcs,
+      File "/opt/anaconda3/lib/python3.7/site-packages/streamlit/caching.py", line 336, in _read_from_cache
+        raise e
+      File "/opt/anaconda3/lib/python3.7/site-packages/streamlit/caching.py", line 322, in _read_from_cache
+        mem_cache, key, allow_output_mutation, func_or_code, hash_funcs
+      File "/opt/anaconda3/lib/python3.7/site-packages/streamlit/caching.py", line 252, in _read_from_mem_cache
+        raise CacheKeyNotFoundError("Key not found in mem cache")
+    streamlit.caching.CacheKeyNotFoundError: Key not found in mem cache
+    
+    During handling of the above exception, another exception occurred:
+    
+    Traceback (most recent call last):
+      File "/Users/gilmer/Documents/Springboard_Capstone/web_app/ChopinBotApp.py", line 69, in get_weights
+        model.load_weights(filepath)
+      File "/opt/anaconda3/lib/python3.7/site-packages/tensorflow/python/keras/engine/training.py", line 2204, in load_weights
+        with h5py.File(filepath, 'r') as f:
+      File "/opt/anaconda3/lib/python3.7/site-packages/h5py/_hl/files.py", line 408, in __init__
+        swmr=swmr)
+      File "/opt/anaconda3/lib/python3.7/site-packages/h5py/_hl/files.py", line 173, in make_fid
+        fid = h5f.open(name, flags, fapl=fapl)
+      File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
+      File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
+      File "h5py/h5f.pyx", line 88, in h5py.h5f.open
+    OSError: Unable to open file (unable to open file: name = '../models/best_maestro_model_weights_ext20_2_1_1024_0pt4_mnv_2-.h5', errno = 2, error message = 'No such file or directory', flags = 0, o_flags = 0)
+[I 210130 16:51:25 ChopinBotApp:27] Logfile ./logfiles/logzero_1ecf774e-0ea4-4bc5-aa7c-ee81cffbb115.log created

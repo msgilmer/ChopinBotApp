@@ -1,0 +1,6 @@
+[I 210202 12:00:18 ChopinBotApp:33] Logfile ./logfiles/logzero_83be68e2-6135-4e01-acc4-03ae27e1efcc.log created
+[E 210202 15:54:07 ChopinBotApp:23] FileNotFoundError on open() in get_binary_file_downloader_html(): [Errno 2] No such file or directory: 'nonsense'
+    Traceback (most recent call last):
+      File "/Users/gilmer/Documents/Springboard_Capstone/web_app/ChopinBotApp.py", line 249, in get_binary_file_downloader_html
+        with open(bin_file, 'rb') as f:
+    FileNotFoundError: [Errno 2] No such file or directory: 'nonsense'
