@@ -348,7 +348,7 @@ if __name__ == '__main__':
         if (st.button('Create MIDI File for the ' + music_type.title() + \
                       ' Music', key = music_type)):
             exec(('convert_to_midi(transposed_{0}_music, bpm = bpm, ' + \
-                 'output_file = \'/tmp/{0}.mid\')').format(music_type))
+                 'output_file = \'./midi_output/{0}.mid\')').format(music_type))
             st.markdown(get_binary_file_downloader_html('./midi_output/' + \
                     music_type + '.mid', 'MIDI'), unsafe_allow_html = True)
 
