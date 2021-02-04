@@ -285,10 +285,13 @@ if __name__ == '__main__':
     precision_and_recall = Image.open('./images/precision_and_recall.jpg')
     caption = 'The [precision and recall](https://en.wikipedia.org/wiki/Preci'+\
               'sion_and_recall) can be adjusted by changing the probability t'+\
-              'hreshold. Lowering the threshold will increase the number of n'+\
-              'otes but comes at the cost of predicting more "wrong" notes. T'+\
-              'he f-measure is the [harmonic mean](https://en.wikipedia.org/w'+\
-              'iki/Harmonic_mean) of the two.'
+              'hreshold (default 0.5). Lowering the threshold will increase t'+\
+              'he number of notes but comes at the cost of predicting more "w'+\
+              'rong" notes. It is wise to make this trade off when generating'+\
+              ' long pieces (i.e. a higher # of timesteps) as a sufficient pa'+\
+              'ucity of notes will cause the network to eventually predict on'+\
+              'ly rests. The f-measure is the [harmonic mean](https://en.wiki'+\
+              'pedia.org/wiki/Harmonic_mean) of the precision and recall.'
     st.image(precision_and_recall, use_column_width = True)
     st.markdown(caption)
     
