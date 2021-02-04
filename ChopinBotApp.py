@@ -288,10 +288,10 @@ if __name__ == '__main__':
               'hreshold (default 0.5). Lowering the threshold will increase t'+\
               'he number of notes but comes at the cost of predicting more "w'+\
               'rong" notes. It is wise to make this trade off when generating'+\
-              ' long pieces (i.e. a higher # of timesteps) as a sufficient pa'+\
-              'ucity of notes will cause the network to eventually predict on'+\
-              'ly rests. The f-measure is the [harmonic mean](https://en.wiki'+\
-              'pedia.org/wiki/Harmonic_mean) of the precision and recall.'
+              ' long pieces (i.e. a high # of timesteps) as a sufficient pauc'+\
+              'ity of notes will cause the network to eventually predict only'+\
+              'rests. The f-measure is the [harmonic mean](https://en.wikipe'+\
+              'dia.org/wiki/Harmonic_mean) of the precision and recall.'
     st.image(precision_and_recall, use_column_width = True)
     st.markdown(caption)
     
