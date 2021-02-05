@@ -2,3 +2,28 @@
 Web application for piano music generation in the style of Chopin. Powered by Streamlit.io
 
 Currently deployed at https://share.streamlit.io/msgilmer/chopinbotapp/main/ChopinBotApp.py
+
+</br></br>
+<b>Directory Structure</b>
+
+    .
+    ├── ChopinBotApp.py             # The script that is deployed
+    ├── ChopinBotApp_local.py       # The local version (run as streamlit run ChopinBotApp_local.py)
+    ├── X_val                       # The X part of the validation set broken into pieces to avoid git-lfs (not currently compatible with Streamlit). Copied from msgilmer/Springboard_Capstone/train_and_val
+    │   ├── X_val_ext_1.npy
+    │   └── X_val_ext_2.npy
+    ├── images                      # Contents copied from msgilmer/Springboard_Capstone/images. Images posted to application.
+    │   ├── chopin.jpg    
+    │   ├── precision_and_recall.jpg
+    ├── logfiles                    # Logfiles for each unique session. Used for monitoring errors
+    │   └── logzero*log
+    ├── midi_output                 # Directory to store generated MIDI files for download for the local version only
+    │   ├── generated.mid
+    │   └── seed.mid
+    ├── models                      # Directory to store pre-trained keras model weights, copied from msgilmer/Springboard_Capstone/models
+    │   └── best_maestro_model_weights_ext20_2_1_1024_0pt4_mnv_2.h5
+    ├── requirements.txt            # Required to deploy the app. Generated with pipreqs
+    ├── rndm_seed_index_files       # Text files that uniquely store the last randomly-generated seed index (for the X_val set) for each unique session.
+    │   └── rndm*txt
+    └── ...
+    
