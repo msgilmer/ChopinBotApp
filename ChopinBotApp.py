@@ -111,9 +111,9 @@ def init_rndm_seed_index_file(filepath, index = 42):
 @st.cache(hash_funcs={e.sequential.Sequential: id}, \
                       allow_output_mutation = True)
 # to suppress a warning when no_of_timesteps or threshold are changed                    
-def generate_musical_sequence(model, random_music, n_keys_piano = 88, \
-                              n_dur_nodes = 20, no_of_timesteps = 16,
-                              threshold = 0.5):
+def generate_musical_sequence(model, random_music, no_of_timesteps, \
+                              threshold, n_keys_piano = 88, \
+                              n_dur_nodes = 20):
     """Generate a musical sequence using model and from the sequence
     random_music as a starting point. We will perform an inference
     (and evaluation using threshold) no_of_timesteps times, each time
@@ -285,7 +285,7 @@ if __name__ == '__main__':
     precision_and_recall = Image.open('./images/precision_and_recall.jpg')
     caption = 'The [precision and recall](https://en.wikipedia.org/wiki/Preci'+\
               'sion_and_recall) can be adjusted by changing the probability t'+\
-              'hreshold (default 0.5). Lowering the threshold will increase t'+\
+              'hreshold (default 0.4). Lowering the threshold will increase t'+\
               'he number of notes but comes at the cost of predicting more "w'+\
               'rong" notes. It is wise to make this trade off when generating'+\
               ' long pieces (i.e. a high # of timesteps) as a sufficient pauc'+\
@@ -319,13 +319,13 @@ if __name__ == '__main__':
     
     threshold = st.sidebar.number_input(\
         'Set probability threshold in range (0, 1)', min_value = 0.0, \
-        max_value = 1.0, value = 0.5, key = 'threshold')
+        max_value = 1.0, value = 0.4, key = 'threshold')
 
   #  st.sidebar.write('threshold = {}'.format(threshold))
 
     seed_music, generated_music = generate_musical_sequence(model, \
-                                  X_val[seed_index], no_of_timesteps = \
-                                  no_of_timesteps, threshold = threshold)
+                                  X_val[seed_index], no_of_timesteps, \
+                                  threshold)
     
     keys = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
     key = st.sidebar.selectbox('Choose a musical key', keys)
