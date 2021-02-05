@@ -3,6 +3,9 @@ Web application for piano music generation in the style of Chopin. Powered by St
 
 Currently deployed at https://share.streamlit.io/msgilmer/chopinbotapp/main/ChopinBotApp.py
 
+Following Flowchart created with [LucidChart](https://lucidchart.com):
+![](./images/ChopinBotApp_flowchart.jpg)
+
 </br></br>
 <b>Directory Structure</b>
 
