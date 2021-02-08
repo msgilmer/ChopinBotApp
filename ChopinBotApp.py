@@ -5,8 +5,6 @@ import pandas as pd
 from keras.models import Sequential
 from keras.layers import LSTM, Dropout, Dense, Activation
 
-from glob import glob
-
 from music21 import instrument, note, chord, tempo, duration, stream
 
 from PIL import Image
@@ -306,11 +304,11 @@ if __name__ == '__main__':
 
     if (st.sidebar.checkbox('Manually Set Seed Index')):
         seed_index = st.sidebar.number_input('Set Seed Index in range [0, {}]'\
-                     .format(len(X_val) - 1), min_value = 0, \
-                     max_value = len(X_val) - 1, value = 42, key = 'seed')
+                     .format(len(durations) - 1), min_value = 0, \
+                     max_value = len(durations) - 1, value = 42, key = 'seed')
     else:     # Set Set Index Randomly
         if (st.sidebar.button('Generate New Seed Index')):
-            seed_index = np.random.randint(len(X_val))
+            seed_index = np.random.randint(len(durations))
             with open(rndm_seed_index_path, 'w') as f:
                 f.write(str(seed_index))
         else: # Read from file
