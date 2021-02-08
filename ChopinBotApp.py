@@ -295,7 +295,7 @@ if __name__ == '__main__':
               'rong" notes. It is wise to make this trade off when generating'+\
               ' long pieces (i.e. a high # of timesteps) as a sufficient pauc'+\
               'ity of notes will cause the network to eventually predict only'+\
-              'rests. The f-measure is the [harmonic mean](https://en.wikipe'+\
+              ' rests. The f-measure is the [harmonic mean](https://en.wikipe'+\
               'dia.org/wiki/Harmonic_mean) of the precision and recall.'
     st.image(precision_and_recall, use_column_width = True)
     st.markdown(caption)
