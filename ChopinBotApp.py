@@ -18,6 +18,9 @@ from logzero import logger, logfile
 import sys
 
 def exit_on_exception(e, func_string):
+    """Generate a short message, combine with info from exception e, log the
+    combination, and exit program"""
+    
     error_class = str(e.__class__).split()[1]
     message = '{} on {}: {}'.format(error_class[1:-2], func_string, str(e))
     logger.exception(message)
@@ -79,26 +82,17 @@ def get_weights(model, filepath):
     return model, '\n'.join(summary)
 
 @st.cache()
-def load_validation_set(filepath, max_duration = 6.545454545454545):
-    """Load the X part of the validation set (from multiple files), and reverse
-    the duration scaling applied previously so that the duration is in
-    seconds. We take the max_duration as input because to calculate it would
-    require loading the training set and the y part of the validation set."""
-
-    files = glob(filepath + '_*.npy')
+def load_validation_set(dirpath):
+    """Load the X part of the validation set from the space-efficient files
+    created by separate_X_val.py."""
+   
     try:
-        X_val = np.load(files[0])
-        for f in files[1:]:
-            temp = np.load(f)
-            try:
-                X_val = np.append(X_val, temp, axis = 0)
-            except ValueError as e:
-                exit_on_exception(e, 'np.append() in load_validation_set()')
+        booleanized_sequences = np.load(dirpath + 'booleanized_sequences.npy')
+        durations = np.load(dirpath + 'durations.npy')
     except (IOError, ValueError) as e:
         exit_on_exception(e, 'np.load() in load_validation_set()')
         
-    X_val[:, :, -1] *= max_duration    # convert back into seconds
-    return X_val
+    return booleanized_sequences, durations
 
 @st.cache()
 def init_rndm_seed_index_file(filepath, index = 42):
@@ -107,6 +101,19 @@ def init_rndm_seed_index_file(filepath, index = 42):
 
     with open(filepath, 'w') as f:
         f.write(str(index))
+
+@st.cache()
+def get_random_music(booleanized_sequence, sequence_durations, \
+                     n_dur_nodes = 20):
+    """Combine/convert the sequence stored in booleanized_sequence and
+    sequence_durations from their space-efficient form to the form needed for
+    inference."""
+    
+    random_music = np.concatenate([booleanized_sequence, \
+                   np.repeat(np.expand_dims(sequence_durations, -1), \
+                                     n_dur_nodes, axis = 1)], axis = 1)
+    
+    return random_music
 
 @st.cache(hash_funcs={e.sequential.Sequential: id}, \
                       allow_output_mutation = True)
@@ -267,7 +274,7 @@ if __name__ == '__main__':
     model, summary = get_weights(model, './models/best_maestro_model_weights'+\
                                  '_ext20_2_1_1024_0pt4_mnv_2.h5')
              
-    X_val = load_validation_set('./X_val/X_val_ext')
+    booleanized_sequences, durations = load_validation_set('./X_val/')
 
     rndm_seed_index_path = './rndm_seed_index_files/rndm_seed_index_{}.txt'.\
                            format(session_id)
@@ -323,9 +330,12 @@ if __name__ == '__main__':
 
   #  st.sidebar.write('threshold = {}'.format(threshold))
 
+    random_music = get_random_music(booleanized_sequences[seed_index], \
+                                    durations[seed_index])
+
     seed_music, generated_music = generate_musical_sequence(model, \
-                                  X_val[seed_index], no_of_timesteps, \
-                                  threshold)
+                                  random_music, no_of_timesteps = \
+                                  no_of_timesteps, threshold = threshold)
     
     keys = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
     key = st.sidebar.selectbox('Choose a musical key', keys)

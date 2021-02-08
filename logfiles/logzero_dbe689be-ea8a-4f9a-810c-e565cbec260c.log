@@ -1,0 +1,41 @@
+[I 210208 15:05:34 ChopinBotApp_local:33] Logfile ./logfiles/logzero_dbe689be-ea8a-4f9a-810c-e565cbec260c.log created
+[E 210208 15:05:41 ChopinBotApp_local:23] FileNotFoundError on np.load() in load_validation_set(): [Errno 2] No such file or directory: './X_val/X_val_extbooleanized_sequences.npy'
+    Traceback (most recent call last):
+      File "/opt/anaconda3/lib/python3.7/site-packages/streamlit/caching.py", line 576, in get_or_create_cached_value
+        hash_funcs=hash_funcs,
+      File "/opt/anaconda3/lib/python3.7/site-packages/streamlit/caching.py", line 336, in _read_from_cache
+        raise e
+      File "/opt/anaconda3/lib/python3.7/site-packages/streamlit/caching.py", line 322, in _read_from_cache
+        mem_cache, key, allow_output_mutation, func_or_code, hash_funcs
+      File "/opt/anaconda3/lib/python3.7/site-packages/streamlit/caching.py", line 252, in _read_from_mem_cache
+        raise CacheKeyNotFoundError("Key not found in mem cache")
+    streamlit.caching.CacheKeyNotFoundError: Key not found in mem cache
+    
+    During handling of the above exception, another exception occurred:
+    
+    Traceback (most recent call last):
+      File "/Users/gilmer/Desktop/ChopinBotApp/ChopinBotApp_local.py", line 89, in load_validation_set
+        booleanized_sequences = np.load(filepath + 'booleanized_sequences.npy')
+      File "/opt/anaconda3/lib/python3.7/site-packages/numpy/lib/npyio.py", line 428, in load
+        fid = open(os_fspath(file), "rb")
+    FileNotFoundError: [Errno 2] No such file or directory: './X_val/X_val_extbooleanized_sequences.npy'
+[E 210208 15:08:28 ChopinBotApp_local:23] FileNotFoundError on np.load() in load_validation_set(): [Errno 2] No such file or directory: './X_val/booleanized_sequences.npy'
+    Traceback (most recent call last):
+      File "/opt/anaconda3/lib/python3.7/site-packages/streamlit/caching.py", line 576, in get_or_create_cached_value
+        hash_funcs=hash_funcs,
+      File "/opt/anaconda3/lib/python3.7/site-packages/streamlit/caching.py", line 336, in _read_from_cache
+        raise e
+      File "/opt/anaconda3/lib/python3.7/site-packages/streamlit/caching.py", line 322, in _read_from_cache
+        mem_cache, key, allow_output_mutation, func_or_code, hash_funcs
+      File "/opt/anaconda3/lib/python3.7/site-packages/streamlit/caching.py", line 252, in _read_from_mem_cache
+        raise CacheKeyNotFoundError("Key not found in mem cache")
+    streamlit.caching.CacheKeyNotFoundError: Key not found in mem cache
+    
+    During handling of the above exception, another exception occurred:
+    
+    Traceback (most recent call last):
+      File "/Users/gilmer/Desktop/ChopinBotApp/ChopinBotApp_local.py", line 89, in load_validation_set
+        booleanized_sequences = np.load(dirpath + 'booleanized_sequences.npy')
+      File "/opt/anaconda3/lib/python3.7/site-packages/numpy/lib/npyio.py", line 428, in load
+        fid = open(os_fspath(file), "rb")
+    FileNotFoundError: [Errno 2] No such file or directory: './X_val/booleanized_sequences.npy'
