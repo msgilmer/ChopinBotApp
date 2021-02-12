@@ -1,9 +1,10 @@
 import streamlit as st
 import numpy as np
-import pandas as pd
 
 from keras.models import Sequential
 from keras.layers import LSTM, Dropout, Dense, Activation
+
+from tensorflow.keras.constraints import max_norm
 
 from music21 import instrument, note, chord, tempo, duration, stream
 
@@ -38,26 +39,38 @@ import tensorflow.python.keras.engine as e
 @st.cache(hash_funcs={e.sequential.Sequential: id})
 def lstm(n_lstm_layers = 2, n_dense_layers = 1, n_lstm_nodes = 512, \
          dropout_rate = 0.4, n_keys_piano = 88, window_size = 16, \
-         n_dur_nodes = 20):
-    """Generate a keras Sequential model of the form as described in Figure 16
-    of https://www.tandfonline.com/doi/full/10.1080/25765299.2019.1649972"""
-    
+         n_dur_nodes = 20, max_norm_value = None, bn_momentum = 0.99):
+    """Generate a keras Sequential model of the form as described in Figure
+    16 of https://www.tandfonline.com/doi/full/10.1080/25765299.2019.1649972
+    plus some BatchNormalization and optional max_norm constraint."""
+    if (max_norm_value):
+        kernel_constraint = max_norm(max_norm_value)
+    else:
+        kernel_constraint = None
     model = Sequential()
     model.add(LSTM(n_lstm_nodes, return_sequences = True, input_shape = \
-                   (window_size, n_keys_piano + n_dur_nodes,)))
+                  (window_size, n_keys_piano + n_dur_nodes,)))
+    model.add(BatchNormalization(momentum = bn_momentum))
     model.add(Dropout(dropout_rate))
     for i in range(1, n_lstm_layers - 1):
-        model.add(LSTM(n_lstm_nodes, return_sequences = True))
+        model.add(LSTM(n_lstm_nodes, return_sequences = True, \
+                       kernel_constraint = kernel_constraint))
+        model.add(BatchNormalization(momentum = bn_momentum))
         model.add(Dropout(dropout_rate))
-    model.add(LSTM(n_lstm_nodes))
+    model.add(LSTM(n_lstm_nodes, kernel_constraint = kernel_constraint))
+    model.add(BatchNormalization(momentum = bn_momentum))
     model.add(Dropout(dropout_rate))
-    model.add(Dense(n_lstm_nodes // 2))
+    model.add(Dense(n_lstm_nodes // 2, kernel_constraint = kernel_constraint))
+    model.add(BatchNormalization(momentum = bn_momentum))
     model.add(Activation('relu'))
     model.add(Dropout(dropout_rate))
     for i in range(n_dense_layers - 1):
-        model.add(Dense(n_lstm_nodes // 2))
+        model.add(Dense(n_lstm_nodes // 2, kernel_constraint = \
+                                           kernel_constraint))
+        model.add(BatchNormalization(momentum = bn_momentum))
         model.add(Dropout(dropout_rate))
-    model.add(Dense(n_keys_piano + n_dur_nodes))
+    model.add(Dense(n_keys_piano + n_dur_nodes, kernel_constraint = \
+                                                kernel_constraint))
     model.add(Activation('sigmoid'))
     return model
 
@@ -268,9 +281,14 @@ if __name__ == '__main__':
     st.title('ChopinBot 1.0: Music Generation with an Long Short-Term' \
              + ' Memory (LSTM) Neural Network')
 
-    model = lstm(n_lstm_nodes = 1024)
-    model, summary = get_weights(model, './models/best_maestro_model_weights'+\
-                                 '_ext20_2_1_1024_0pt4_mnv_2.h5')
+    st.markdown('The application code can be found [here](https://github.com/'+\
+                'msgilmer/ChopinBotApp) and information on the data and model'+\
+                ' training is available [here](https://github.com/msgilmer/Sp'+\
+                'ringboard_Capstone)')
+
+    model = lstm(dropout_rate = 0.3, max_norm_value = 2., bn_momentum = 0.0)
+    model, summary = get_weights(model, './models/best_maestro_model_weights_'+\
+                                 'batchnorm_p_0_ext20_2_1_512_0pt3_mnv_2.h5')
              
     booleanized_sequences, durations = load_validation_set('./X_val/')
 
