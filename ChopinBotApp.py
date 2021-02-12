@@ -2,7 +2,7 @@ import streamlit as st
 import numpy as np
 
 from keras.models import Sequential
-from keras.layers import LSTM, Dropout, Dense, Activation
+from keras.layers import LSTM, Dropout, Dense, Activation, BatchNormalization
 
 from tensorflow.keras.constraints import max_norm
 
