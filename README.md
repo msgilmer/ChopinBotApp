@@ -3,6 +3,9 @@ Web application for piano music generation in the style of Chopin. Powered by St
 
 Currently deployed at https://share.streamlit.io/msgilmer/chopinbotapp/main/ChopinBotApp.py
 
+The ML model used by this application was developed in https://github.com/msgilmer/Springboard_Capstone. 
+Specifically, in notebooks/model_training-v3.ipynb.
+
 Following Flowchart created with [LucidChart](https://lucidchart.com):
 ![](./images/ChopinBotApp_flowchart.jpg)
 
@@ -25,7 +28,7 @@ Following Flowchart created with [LucidChart](https://lucidchart.com):
     │   ├── generated.mid
     │   └── seed.mid
     ├── models                        # Directory to store pre-trained keras model weights, copied from msgilmer/Springboard_Capstone/models.
-    │   └── best_maestro_model_weights_ext20_2_1_1024_0pt4_mnv_2.h5
+    │   └── best_maestro_model_weights_batchnorm_p_0_ext20_2_1_512_0pt3_mnv_2.h5
     ├── requirements.txt              # Required to deploy the app. Generated with pipreqs.
     ├── rndm_seed_index_files         # Text files that uniquely store the last randomly-generated seed index (for the X_val set) for each unique session.
     │   └── rndm*txt
