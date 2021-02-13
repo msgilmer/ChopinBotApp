@@ -376,10 +376,10 @@ if __name__ == '__main__':
     for music_type in ['seed', 'generated']:                                                             
         if (st.button('Create MIDI File for the ' + music_type.title() + \
                       ' Music', key = music_type)):
-            exec(('convert_to_midi(transposed_{0}_music, bpm = bpm, ' + \
-                 'output_file = \'./midi_output/{0}.mid\')').format(music_type))
-            st.markdown(get_binary_file_downloader_html('./midi_output/' + \
-                    music_type + '.mid', 'MIDI'), unsafe_allow_html = True)
+            fpath = './midi_output/{0}_{1}.mid'.format(music_type, session_id)
+            exec('convert_to_midi(transposed_{0}_music, '.format(music_type) + \
+                 'bpm = bpm, output_file = fpath)')
+            st.markdown(get_binary_file_downloader_html(fpath, 'MIDI'), unsafe_allow_html = True)
 
 
     
