@@ -389,6 +389,7 @@ if __name__ == '__main__':
 
             virtualfile = BytesIO()
             wavfile.write(virtualfile, 44100, audio_data)
+            st.write('Play temporary .wav file:')
             st.audio(virtualfile)
             st.markdown(get_binary_file_downloader_html(fpath, 'MIDI'), unsafe_allow_html = True)
 
