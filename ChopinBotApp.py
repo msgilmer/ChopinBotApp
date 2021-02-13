@@ -16,6 +16,10 @@ from logzero import logger, logfile
 
 import sys
 
+from io import BytesIO
+from pretty_midi import PrettyMIDI
+from scipy.io import wavfile
+
 def exit_on_exception(e, func_string):
     """Generate a short message, combine with info from exception e, log the
     combination, and exit program"""
@@ -379,6 +383,14 @@ if __name__ == '__main__':
             fpath = './midi_output/{0}_{1}.mid'.format(music_type, session_id)
             exec('convert_to_midi(transposed_{0}_music, '.format(music_type) + \
                  'bpm = bpm, output_file = fpath)')
+            midi_data = PrettyMIDI(fpath)
+            audio_data = midi_data.fluidsynth()
+            audio_data = np.int16(audio_data / np.max(np.abs(audio_data)) * 32767 * 0.9) # -- Normalize for 16 bit audio https://github.com/jkanner/streamlit-audio/blob/main/helper.py
+
+            virtualfile = BytesIO()
+            wavfile.write(virtualfile, 44100, audio_data)
+            st.write('Play temporary .wav file:')
+            st.audio(virtualfile)
             st.markdown(get_binary_file_downloader_html(fpath, 'MIDI'), unsafe_allow_html = True)
 
 
