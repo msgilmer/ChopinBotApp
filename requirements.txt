@@ -8,5 +8,5 @@ numpy==1.18.1
 pretty_midi==0.2.9
 Pillow==8.1.0
 mido
-pyfluidsynth
+pyFluidSynth
 soundfile
